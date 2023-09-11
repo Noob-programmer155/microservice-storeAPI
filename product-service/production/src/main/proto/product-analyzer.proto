@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.amrtm.microservice.store.production.grpc;
+
+service ProductAnalyzer {
+  rpc ProductDist (ProductProducer) returns (ProductConsumer);
+}
+
+message ProductProducer {
+  uint32 id = 1;
+  string name = 2;
+  string type = 3;
+  string brand = 4;
+}
+
+message ProductConsumer {
+  uint32 id = 1;
+  string name = 2;
+}
