@@ -1,2 +1,4 @@
 *.dia
 *.jpg
+*.properties
+*/application.yaml

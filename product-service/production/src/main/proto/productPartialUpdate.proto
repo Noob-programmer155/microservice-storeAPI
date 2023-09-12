@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.amrtm.microservice.store.production.grpc;
+
+service ProductPartialUpdate {
+  rpc General (GeneralProducer) returns (Consumer);
+  rpc Score (ScoreProducer) returns (Consumer);
+}
+
+message GeneralProducer {
+  uint32 id = 1;
+  uint32 stock = 2;
+}
+
+message ScoreProducer {
+  uint32 id = 1;
+  uint32 score = 2;
+}
+
+message Consumer {
+  uint32 id = 1;
+  bool success = 2;
+  string message = 3;
+}

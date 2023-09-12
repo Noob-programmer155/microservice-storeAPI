@@ -9,16 +9,24 @@ import lombok.Setter
 
 @Entity
 @Builder
-@Getter
-@Setter
 @AllArgsConstructor
 class Brand {
     @Id
     @GeneratedValue
-    val id: Long ?= null
-    lateinit var name: String
-    val score: UInt = 1u
+    @Getter @Setter var id: Long ?= null
+    @Column(unique = true)
+    @Getter @Setter lateinit var name: String
+    @Getter @Setter var score: UInt = 1u
     @JsonIgnore
-    @OneToMany(mappedBy = "brands", cascade = [CascadeType.MERGE, CascadeType.PERSIST])
-    lateinit var products: List<Product>
+    @OneToMany(mappedBy = "brand", cascade = [CascadeType.MERGE, CascadeType.PERSIST])
+    var products: MutableList<Product> = ArrayList()
+    fun addProduct(product: Product) {
+        this.products.add(product)
+        product.brand = this
+    }
+
+    fun removeProduct(product: Product) {
+        this.products.remove(product)
+        product.brand = null
+    }
 }

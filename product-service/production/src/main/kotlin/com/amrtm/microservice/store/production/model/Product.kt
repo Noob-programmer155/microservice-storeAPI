@@ -1,10 +1,12 @@
 package com.amrtm.microservice.store.production.model
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.Table
 import lombok.AllArgsConstructor
 import lombok.Builder
 import lombok.Getter
@@ -17,20 +19,22 @@ import java.util.UUID
 @Getter
 @Setter
 @AllArgsConstructor
+@Table(name="product")
 class Product {
     @Id
     @GeneratedValue
-    val id: UUID ?= null
+    var id: UUID ?= null
+    @Column(unique = true)
     lateinit var name: String
     @ManyToOne(optional = false)
     @JoinColumn(name="Brand_Bridge", nullable = false)
-    lateinit var brands: Brand
-    val score: Int = 0
-    val stock: Long = 0
+    var brand: Brand ?= null
+    var score: Int = 0
+    var stock: Long = 0
     lateinit var price: BigInteger
     lateinit var description: String
     @ManyToOne(optional = false)
     @JoinColumn(name="Group_Bridge", nullable = false)
-    lateinit var groups: Group
-    val disable: Boolean = false
+    var group: Group ?= null
+    var disable: Boolean = false
 }

@@ -33,7 +33,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.apache.kafka:kafka-streams")
+	implementation("org.springframework.kafka:spring-kafka")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("io.grpc:grpc-kotlin-stub:1.2.0")
 	implementation("com.google.protobuf:protobuf-java:3.22.3")
