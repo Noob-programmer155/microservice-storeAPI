@@ -7,34 +7,39 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
-import lombok.AllArgsConstructor
-import lombok.Builder
-import lombok.Getter
-import lombok.Setter
 import java.math.BigInteger
 import java.util.UUID
 
 @Entity
-@Builder
-@Getter
-@Setter
-@AllArgsConstructor
 @Table(name="product")
 class Product {
     @Id
     @GeneratedValue
     var id: UUID ?= null
     @Column(unique = true)
-    lateinit var name: String
+    var name: String
     @ManyToOne(optional = false)
     @JoinColumn(name="Brand_Bridge", nullable = false)
     var brand: Brand ?= null
     var score: Int = 0
     var stock: Long = 0
-    lateinit var price: BigInteger
-    lateinit var description: String
+    var price: BigInteger
+    var description: String
     @ManyToOne(optional = false)
     @JoinColumn(name="Group_Bridge", nullable = false)
     var group: Group ?= null
     var disable: Boolean = false
+
+    constructor(id: UUID?, name: String, brand: Brand?, score: Int, stock: Long, price: BigInteger, description: String,
+                group: Group?, disable: Boolean) {
+        this.id = id
+        this.name = name
+        this.brand = brand
+        this.score = score
+        this.stock = stock
+        this.price = price
+        this.description = description
+        this.group = group
+        this.disable = disable
+    }
 }

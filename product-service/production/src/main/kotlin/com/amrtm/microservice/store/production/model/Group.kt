@@ -4,22 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
-import lombok.AllArgsConstructor
-import lombok.Builder
-import lombok.Getter
-import lombok.Setter
 
 @Entity
-@Builder
-@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator::class)
 class Group {
     @Id
     @GeneratedValue
-    @Getter @Setter var id: Long ?= null
+    var id: Long ?= null
     @Column(unique = true)
-    @Getter @Setter lateinit var name: String
-    @Getter @Setter lateinit var type: String
+    var name: String
+    var type: String
     @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)
     var subgroups: MutableList<Group> = ArrayList()
     @JsonIgnore
@@ -30,6 +24,16 @@ class Group {
     @JsonIgnore
     @OneToMany(mappedBy = "group", cascade = [CascadeType.MERGE,CascadeType.PERSIST])
     var products: MutableList<Product> = ArrayList()
+
+    constructor(id: Long?, name: String, type: String, subgroups: MutableList<Group>, groups: MutableList<Group>,
+                products: MutableList<Product>) {
+        this.id = id
+        this.name = name
+        this.type = type
+        this.subgroups = subgroups
+        this.groups = groups
+        this.products = products
+    }
 
     fun addSubgroup(group: Group) {
         if (this.subgroups.contains(group)) return

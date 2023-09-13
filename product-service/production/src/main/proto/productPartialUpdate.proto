@@ -1,6 +1,9 @@
 syntax = "proto3";
 
-package com.amrtm.microservice.store.production.grpc;
+option java_multiple_files=false;
+option java_package="com.amrtm.microservice.store.production";
+
+package grpc;
 
 service ProductPartialUpdate {
   rpc General (GeneralProducer) returns (Consumer);

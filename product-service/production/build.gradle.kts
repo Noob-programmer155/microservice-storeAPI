@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.com.sun.jna.StringArray
+import org.jetbrains.kotlin.codegen.intrinsics.ArraySet
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -37,14 +39,28 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("io.grpc:grpc-kotlin-stub:1.2.0")
 	implementation("com.google.protobuf:protobuf-java:3.22.3")
-//	implementation("io.grpc:grpc-protobuf:1.58.0")
-//	implementation("io.grpc:grpc-stub:1.58.0")
+	implementation("io.grpc:grpc-protobuf:1.58.0")
+	implementation("io.grpc:grpc-stub:1.58.0")
 //	compileOnly("org.apache.tomcat:annotations-api:6.0.53")
-	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.mysql:mysql-connector-j")
-	annotationProcessor("org.projectlombok:lombok")
+	testImplementation("org.springframework.kafka:spring-kafka-test")
+	testImplementation("org.testcontainers:kafka")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+sourceSets {
+	main {
+		kotlin {
+			srcDir("src/main/kotlin")
+		}
+		proto {
+			srcDir("src/main/proto")
+		}
+		resources {
+			srcDir("src/main/resources")
+		}
+	}
 }
 
 protobuf {
@@ -65,12 +81,8 @@ protobuf {
 	}
 }
 
-sourceSets {
-	main {
-		proto {
-			srcDir("src/main/proto")
-		}
-	}
+tasks.processResources {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.withType<KotlinCompile> {

@@ -2,24 +2,26 @@ package com.amrtm.microservice.store.production.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
-import lombok.AllArgsConstructor
-import lombok.Builder
-import lombok.Getter
-import lombok.Setter
 
 @Entity
-@Builder
-@AllArgsConstructor
 class Brand {
     @Id
     @GeneratedValue
-    @Getter @Setter var id: Long ?= null
+    var id: Long ?= null
     @Column(unique = true)
-    @Getter @Setter lateinit var name: String
-    @Getter @Setter var score: UInt = 1u
+    var name: String
+    var score: UInt = 1u
     @JsonIgnore
     @OneToMany(mappedBy = "brand", cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     var products: MutableList<Product> = ArrayList()
+
+    constructor(id: Long?, name: String, score: UInt, products: MutableList<Product>) {
+        this.id = id
+        this.name = name
+        this.score = score
+        this.products = products
+    }
+
     fun addProduct(product: Product) {
         this.products.add(product)
         product.brand = this
