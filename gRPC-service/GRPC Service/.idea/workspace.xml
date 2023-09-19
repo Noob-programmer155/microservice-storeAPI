@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f7d797d3-7023-4740-b1e2-b1fa110190f9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buildAndRun.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/airhacks/Grpc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/airhacks/ping/boundary/PingResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/beans.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../product-service/production/env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../product-service/production/env-kafka" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../product-service/production/src/main/kotlin/com/amrtm/microservice/store/production/controller/service/gRPC/gRPCService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../product-service/production/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../product-service/production/src/main/kotlin/com/amrtm/microservice/store/production/controller/gRPC/gRPCController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../product-service/production/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../product-service/production/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2VSPImhqFpHpR4Q2kEfvBnCVUBj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f7d797d3-7023-4740-b1e2-b1fa110190f9" name="Changes" comment="" />
+      <created>1694826433717</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694826433717</updated>
+    </task>
+    <servers />
+  </component>
+</project>
