@@ -1,12 +1,12 @@
 package com.amrtm.microservice.store.production.model.filter
 
 data class FilterProduct(
-    var name: String,
-    var descriptionKeys: Array<String>,
-    var prices: Array<Long>,
-    var scores: Array<UInt>,
-    var brandName: String,
-    var brandScores: Array<UInt>,
-    var groupName: String,
+    var keywords: MutableSet<String>,
+    var priceStart: Long,
+    var priceEnd: Long,
+    var scoreStart: UInt,
+    var scoreEnd: UInt,
+    var brandScoreStart: UInt,
+    var brandScoreEnd: UInt,
     var groupType: String
 )

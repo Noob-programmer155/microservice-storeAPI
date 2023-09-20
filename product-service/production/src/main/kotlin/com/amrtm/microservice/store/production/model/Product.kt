@@ -12,6 +12,8 @@ data class Product(
     @ManyToOne(optional = false)
     @JoinColumn(name = "Brand_Bridge", nullable = false) var brand: Brand ?= null,
     var description: String? = null,
+    @ElementCollection
+    var keywords: MutableSet<String> = HashSet(),
     @ManyToOne(optional = false)
     @JoinColumn(name = "Group_Bridge", nullable = false) var group: Group ?= null,
     var disable: Boolean = true

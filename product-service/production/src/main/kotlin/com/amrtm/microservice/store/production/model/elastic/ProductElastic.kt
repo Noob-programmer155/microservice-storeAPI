@@ -16,6 +16,7 @@ data class ProductElastic(
         InnerField(suffix = "product",type = FieldType.Search_As_You_Type)
     ]) var name: String = "",
     @Field(type = FieldType.Object) var brand: BrandElastic ?= null,
+    var keywords: MutableSet<String>,
     var score: UInt,
     var stock: Long,
     var price: Long,
