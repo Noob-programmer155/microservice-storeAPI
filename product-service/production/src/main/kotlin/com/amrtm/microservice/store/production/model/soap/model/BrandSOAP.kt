@@ -1,4 +1,4 @@
-package com.amrtm.microservice.store.production.model
+package com.amrtm.microservice.store.production.model.soap.model
 
 import com.amrtm.microservice.store.production.controller.configuration.listeners.BrandEntityListener
 import com.amrtm.microservice.store.production.model.store_only.BrandPoint
@@ -6,20 +6,23 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
+import jakarta.xml.bind.annotation.XmlElement
+import jakarta.xml.bind.annotation.XmlTransient
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator::class)
 @EntityListeners(BrandEntityListener::class)
 @Table(name="brand")
-data class Brand(
+data class BrandSOAP(
     @Id @GeneratedValue
-    var id: Long?,
+    @get:XmlElement var id: Long?,
     @Column(unique = true)
-    var name: String = "",
+    @get:XmlElement var name: String = "",
     @ManyToOne(optional = false)
     @JoinColumn(name = "score", nullable = false)
-    var score: BrandPoint?,
+    @get:XmlElement var score: BrandPoint?,
     @JsonIgnore
+    @XmlTransient
     @OneToMany(
         mappedBy = "brand",
         cascade = [CascadeType.MERGE, CascadeType.PERSIST]

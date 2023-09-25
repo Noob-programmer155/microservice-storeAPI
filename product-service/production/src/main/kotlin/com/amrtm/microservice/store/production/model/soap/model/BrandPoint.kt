@@ -1,9 +1,11 @@
-package com.amrtm.microservice.store.production.model.store_only
+package com.amrtm.microservice.store.production.model.soap.model
 
 import com.amrtm.microservice.store.production.controller.configuration.listeners.soap.BrandPointEntityListener
 import com.amrtm.microservice.store.production.model.Brand
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
+import jakarta.xml.bind.annotation.XmlElement
+import jakarta.xml.bind.annotation.XmlTransient
 import java.util.*
 import kotlin.collections.HashSet
 
@@ -14,10 +16,11 @@ class BrandPoint (
     @Id
     @GeneratedValue var id:Long ?= null,
     @JsonIgnore
-    var brand_id: Long ?= null,
-    var score: UInt,
-    var timestamp: Long = Date().time,
+    @get:XmlElement var brand_id: Long ?= null,
+    @get:XmlElement var score: UInt,
+    @get:XmlElement var timestamp: Long = Date().time,
     @JsonIgnore
+    @XmlTransient
     @OneToMany(mappedBy = "score") var brands: MutableSet<Brand> = HashSet()
 ) {
     fun addBrand(brand: Brand) {

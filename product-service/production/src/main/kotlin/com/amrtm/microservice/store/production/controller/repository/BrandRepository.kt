@@ -7,4 +7,4 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface BrandRepository: JpaRepository<Brand, UUID>, PagingAndSortingRepository<Brand, UUID>
+interface BrandRepository: JpaRepository<Brand, Long>, PagingAndSortingRepository<Brand, Long>

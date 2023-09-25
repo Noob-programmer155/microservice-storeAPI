@@ -56,7 +56,7 @@ interface ProductRepositoryElastic: ElasticsearchRepository<ProductElastic, UUID
                     {"range": {"price": { "gte": :?#{#filter.priceStart}, "lte": :?#{#filter.priceEnd} }}},
                     {"range": {"score": { "gte": :?#{#filter.scoreStart}, "lte": :?#{#filter.scoreEnd} }}},
                     {"range": {"brand.score": { "gte": :?#{#filter.brandScoreStart}, "lte": :?#{#filter.brandScoreEnd} }}},
-                    {"term": {"keywords": :?#{#filter.keywords} }},
+                    {"match": {"keywords": :?#{#filter.keywords} }},
                     {"term": {"group.type": ":?#{#filter.groupType}"}}
                 ]
             }

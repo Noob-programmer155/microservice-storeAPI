@@ -1,10 +1,12 @@
-package com.amrtm.microservice.store.production.model
+package com.amrtm.microservice.store.production.model.soap.model
 
 import com.amrtm.microservice.store.production.controller.configuration.listeners.GroupEntityListener
 import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
+import jakarta.xml.bind.annotation.XmlElement
+import jakarta.xml.bind.annotation.XmlTransient
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator::class)
@@ -12,19 +14,21 @@ import jakarta.persistence.*
 @Table(name="group")
 data class Group(
     @Id @GeneratedValue
-    var id: Long?,
+    @get:XmlElement var id: Long?,
     @Column(unique = true)
-    var name: String = "",
-    var type: String = "",
+    @get:XmlElement var name: String = "",
+    @get:XmlElement var type: String = "",
     @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)
-    var subgroups: MutableList<Group> = ArrayList(),
+    @get:XmlElement var subgroups: MutableList<Group> = ArrayList(),
     @JsonIgnore
+    @XmlTransient
     @ManyToMany(cascade = [CascadeType.MERGE], fetch = FetchType.LAZY)
     @JoinTable(
         name = "Self_Proj", joinColumns = [JoinColumn(name = "Group_Owner", nullable = false)],
         inverseJoinColumns = [JoinColumn(name = "Group_Rel", nullable = false)]
     ) var groups: MutableList<Group> = ArrayList(),
     @JsonIgnore
+    @XmlTransient
     @OneToMany(
         mappedBy = "group",
         cascade = [CascadeType.MERGE, CascadeType.PERSIST]

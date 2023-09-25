@@ -1,4 +1,6 @@
-DB_URL=0.0.0.0:3306
+SOAP_URL=http://0.0.0.0:7062
+
+DB_HOST=0.0.0.0:3306
 DB_NAME=production
 DB_USERNAME=admin
 DB_PASSWORD=admin

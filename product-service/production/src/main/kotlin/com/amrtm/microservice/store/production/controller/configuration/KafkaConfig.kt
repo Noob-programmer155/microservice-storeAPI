@@ -30,16 +30,25 @@ class KafkaConfig(@Value("\${spring.kafka.bootstrap-servers}") val server: Strin
 
     @Bean
     fun errorAppsTopic(): NewTopic {
+        val topicConfigs = HashMap<String,String>();
+        topicConfigs.put("retention.ms", "${86400000/(24*60)}");
         return NewTopic("Product_Apps_Error",1,1)
+            .configs(topicConfigs)
     }
     @Bean
     fun sqlAppsTopic(): NewTopic {
+        val topicConfigs = HashMap<String,String>();
+        topicConfigs.put("retention.ms", "${86400000/(24*60)}");
         return NewTopic("Product_Apps_SQL",1,1)
+            .configs(topicConfigs)
     }
 
     @Bean
     fun globalAppsTopic(): NewTopic {
+        val topicConfigs = HashMap<String,String>();
+        topicConfigs.put("retention.ms", "${86400000/(24*60)}");
         return NewTopic("Product_Apps",1,1)
+            .configs(topicConfigs)
     }
 
 //    @Bean

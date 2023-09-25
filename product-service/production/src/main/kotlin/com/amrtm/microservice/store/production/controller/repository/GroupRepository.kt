@@ -7,4 +7,4 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface GroupRepository: JpaRepository<Group, UUID>, PagingAndSortingRepository<Group, UUID>
+interface GroupRepository: JpaRepository<Group, Long>, PagingAndSortingRepository<Group, Long>
