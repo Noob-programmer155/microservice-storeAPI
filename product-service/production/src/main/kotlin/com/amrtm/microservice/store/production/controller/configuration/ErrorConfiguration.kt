@@ -49,8 +49,8 @@ class ErrorConfiguration: ResponseEntityExceptionHandler() {
     }
 
     @ExceptionHandler(value = [
-        IllegalArgumentException::class, IllegalStateException::class, MethodArgumentNotValidException::class,
-        HttpClientErrorException::class, HttpMessageNotReadableException::class
+        IllegalArgumentException::class, IllegalStateException::class,
+        HttpClientErrorException::class
     ])
     protected fun errorHandler2(ex: Exception, request: WebRequest): ResponseEntity<Any>? {
         kafkaCreate(ex.stackTraceToString())

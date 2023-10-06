@@ -31,13 +31,16 @@ repositories {
 
 dependencies {
 	implementation("io.springfox:springfox-swagger-ui:3.0.0")
-	implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+//	implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+	implementation("co.elastic.clients:elasticsearch-java:8.10.2")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.12.7.1")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-web-services")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.kafka:spring-kafka")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+//	implementation("org.hibernate:hibernate-core")
 //	implementation("io.grpc:grpc-kotlin-stub:1.2.0")
 //	implementation("com.google.protobuf:protobuf-java:3.22.3")
 //	implementation("io.grpc:grpc-protobuf:1.58.0")

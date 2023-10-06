@@ -4,9 +4,9 @@ data class FilterProduct(
     var keywords: MutableSet<String>,
     var priceStart: Long,
     var priceEnd: Long,
-    var scoreStart: UInt,
-    var scoreEnd: UInt,
-    var brandScoreStart: UInt,
-    var brandScoreEnd: UInt,
+    var scoreStart: Float,
+    var scoreEnd: Float,
+    var brandScoreStart: Float,
+    var brandScoreEnd: Float,
     var groupType: String
 )

@@ -5,6 +5,6 @@ import jakarta.xml.bind.annotation.XmlRootElement
 
 @XmlRootElement(name = "response")
 data class SOAPResponseGlobal(
-    @get:XmlElement var message: String,
-    @get:XmlElement var err: Boolean
+    @get:XmlElement var message: String = "",
+    @get:XmlElement var err: Boolean = false
 )

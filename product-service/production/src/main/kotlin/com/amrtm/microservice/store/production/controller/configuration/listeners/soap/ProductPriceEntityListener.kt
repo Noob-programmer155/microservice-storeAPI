@@ -34,7 +34,7 @@ class ProductPriceEntityListener(
     override fun updatePost(entity: ProductPrice) {
         kafkaService.sendLog(globalAppsTopic,"Product_Price_Updated", KafkaMessage(2L,"updated:${entity}"))
             ?.thenApply {
-                val url = "${webServiceTemplate.defaultUri}/product/price"
+                val url = "${webServiceTemplate.defaultUri}/product/price/update"
                 val responseObject = webServiceTemplate.marshalSendAndReceive(url,entity) as SOAPResponseGlobal
                 kafkaService.sendLog(globalAppsTopic,"send_to_evaluation_service",
                     KafkaMessage(3L,"${

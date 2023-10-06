@@ -1,52 +1,55 @@
 package com.amrtm.microservice.store.production.model
 
 import com.amrtm.microservice.store.production.controller.configuration.listeners.GroupEntityListener
-import com.fasterxml.jackson.annotation.JsonIdentityInfo
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.ObjectIdGenerators
+import com.fasterxml.jackson.annotation.*
 import jakarta.persistence.*
+import jakarta.xml.bind.annotation.XmlElement
+import jakarta.xml.bind.annotation.XmlTransient
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator::class)
+@Table(name="group_product")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator::class, property = "id")
 @EntityListeners(GroupEntityListener::class)
-@Table(name="group")
-data class Group(
+@JsonIgnoreProperties(ignoreUnknown = true)
+class Group(
     @Id @GeneratedValue
-    var id: Long?,
+    @get:XmlElement var id: Long? = null,
     @Column(unique = true)
-    var name: String = "",
-    var type: String = "",
-    @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)
-    var subgroups: MutableList<Group> = ArrayList(),
+    @get:XmlElement var name: String = "",
+    @Column(name="group_type")
+    @get:XmlElement var type: String = "",
+    @OneToMany(mappedBy = "group", cascade = [CascadeType.MERGE])
+    @get:XmlElement var subgroups: MutableSet<Group> ?= null,
     @JsonIgnore
-    @ManyToMany(cascade = [CascadeType.MERGE], fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "Self_Proj", joinColumns = [JoinColumn(name = "Group_Owner", nullable = false)],
-        inverseJoinColumns = [JoinColumn(name = "Group_Rel", nullable = false)]
-    ) var groups: MutableList<Group> = ArrayList(),
+    @XmlTransient
+    @ManyToOne
+    @JoinColumn(name = "owner_group", nullable = true)
+    var group: Group ?= null,
     @JsonIgnore
-    @OneToMany(
-        mappedBy = "group",
-        cascade = [CascadeType.MERGE, CascadeType.PERSIST]
-    ) var products: MutableSet<Product> = HashSet()
+    @XmlTransient
+    @OneToMany(mappedBy = "group", cascade = [CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH]) var products: MutableSet<Product> ?= null
 ) {
     fun addSubgroup(group: Group) {
-        if (this.subgroups.contains(group)) return
-        this.subgroups.add(group)
-        this.groups.add(this)
+        if (this.subgroups == null) this.subgroups = mutableSetOf()
+        if (this.subgroups?.contains(group)!!) return
+        this.subgroups?.add(group)
+        this.group = this
     }
     fun removeSubgroup(group: Group) {
-        if (!this.subgroups.contains(group)) return
-        this.subgroups.remove(group)
-        this.groups.remove(this)
+        if (this.subgroups != null && !this.subgroups?.contains(group)!!) return
+        this.subgroups?.remove(group)
+        this.group = this
     }
 
     fun addProduct(product: Product) {
-        this.products.add(product)
+        if (this.products == null) this.products = mutableSetOf()
+        if (this.products?.contains(product)!!) return
+        this.products?.add(product)
         product.group = this
     }
     fun removeProduct(product: Product) {
-        this.products.remove(product)
+        if (this.products != null && !this.products?.contains(product)!!) return
+        this.products?.remove(product)
         product.group = null
     }
 }
